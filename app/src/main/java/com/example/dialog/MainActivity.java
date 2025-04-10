@@ -30,10 +30,12 @@ public class MainActivity extends AppCompatActivity {
         Button btn=findViewById(R.id.button);
         Button btn2=findViewById(R.id.button2);
         Button btn3=findViewById(R.id.button3);
+        Button btn4=findViewById(R.id.button4);
 
         btn.setOnClickListener(v-> showAlertDialog());
         btn2.setOnClickListener(v-> showListDialog());
         btn3.setOnClickListener(v-> showDatePickerDialog());
+        btn4.setOnClickListener(v-> showTimePickerDialog());
 
 
     }
@@ -98,11 +100,12 @@ public class MainActivity extends AppCompatActivity {
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hour, int min) {
-                Toast.makeText(MainActivity.this, " sef ae"
-                        + hour + "da"+ min, Toast.LENGTH_SHORT.show();
+                Toast.makeText(MainActivity.this, " Wybrana godzina "
+                        + hour + "da"+ min, Toast.LENGTH_SHORT).show();
             }
         }, hour , min, true);
         timePickerDialog.show();
     }
+
 
 }
