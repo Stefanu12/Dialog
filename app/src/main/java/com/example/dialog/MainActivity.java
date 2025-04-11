@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 
+import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
@@ -19,7 +20,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Calendar;
 
+
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +34,13 @@ public class MainActivity extends AppCompatActivity {
         Button btn2=findViewById(R.id.button2);
         Button btn3=findViewById(R.id.button3);
         Button btn4=findViewById(R.id.button4);
+        Button btn5=findViewById(R.id.button5);
 
         btn.setOnClickListener(v-> showAlertDialog());
         btn2.setOnClickListener(v-> showListDialog());
         btn3.setOnClickListener(v-> showDatePickerDialog());
         btn4.setOnClickListener(v-> showTimePickerDialog());
+        btn5.setOnClickListener(v-> showCustomDialog());
 
 
     }
@@ -100,12 +105,21 @@ public class MainActivity extends AppCompatActivity {
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hour, int min) {
-                Toast.makeText(MainActivity.this, " Wybrana godzina "
-                        + hour + "da"+ min, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, " Wybrana godzina: "
+                        + hour + ":" + min, Toast.LENGTH_SHORT).show();
             }
         }, hour , min, true);
         timePickerDialog.show();
     }
-
-
+    private void showCustomDialog(){
+        final android.app.Dialog dialog = new android.app.Dialog(this);
+        dialog.setContentView(R.layout.custom_dialog);
+        EditText editText = dialog.findViewById(R.id.etInput);
+        Button butl2 = dialog.findViewById(R.id.but1);
+        butl2.setOnClickListener(v->{
+            Toast.makeText(MainActivity.this, "Wysłane " + editText.getText().toString(), Toast.LENGTH_SHORT).show();
+        dialog.dismiss();
+        });
+        dialog.show();
+    }
 }
